@@ -43,6 +43,15 @@ public class Vehicule extends Rectangle implements Constants {
 			changeSize(SQUARE,longueur*SQUARE);
 		}
 	}
+
+        public void init (int xPos, int yPos, String direction)
+        {
+           changePosition(BORDER + SQUARE*xPos, BORDER + SQUARE*yPos);
+           if (direction.equals(VERTICAL))
+              changeSize(SQUARE, longueur*SQUARE);
+           else
+              changeSize(longueur*SQUARE, SQUARE);
+        }
 	
 	/**
 	 * Permet d'afficher le véhicule sur le canvasS
