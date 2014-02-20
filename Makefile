@@ -14,13 +14,16 @@ JFLAGS = -g
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
+	LineFileWriter.java \
+	LineFileReader.java \
 	Constants.java \
 	Canvas.java \
 	Rectangle.java \
 	Vehicule.java \
 	Parking.java \
 	Grid.java \
-	RushHour2.java
+	RushHour2.java \
+	Player.java 
 
 
 GAMENAME = rushHour
