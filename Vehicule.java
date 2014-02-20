@@ -32,7 +32,8 @@ public class Vehicule extends Rectangle implements Constants {
 	 */
 	public Vehicule(String nom, String couleur, int longueur, int posX, int posY, String direction) 
 	{
-		super(nom,longueur*SQUARE,SQUARE,BORDER+SQUARE*(posX-1),BORDER+SQUARE*(posY),couleur);
+	       // Fix bug : bad vehicule position.
+		super(nom,longueur*SQUARE,SQUARE,BORDER+SQUARE*(posX),BORDER+SQUARE*(posY),couleur);
 		
 		this.direction=direction;
 		this.longueur=longueur;
