@@ -4,6 +4,12 @@ public class Player {
    private String name;
    private ArrayList<int[]> scoreboard;
    
+
+   public Player(String name) {
+      this.name = name;
+      this.scoreboard = new ArrayList<int[]>();
+      this.load();
+   }
    /*public int play() {
       //Parking parking = new Parking();
       String command
@@ -17,23 +23,40 @@ public class Player {
    public void setScore(int level, int number, int score) {
       //foreach (int t[] : scoreboard) {
         // if ()
-      int t [] = {level, number, score};
+      int t[] = {level, number, score};
       this.scoreboard.add(t);
-      save();
+      this.save();
    }
    public void getScore() {}
 
    public void save() {
 	LineFileWriter file = new LineFileWriter("scoreboard/" + this.name);
         file.open(false);
+        String buf = "";
         for (int t[] : this.scoreboard) {
            for (int x : t) {
-              file.print(Integer.toString(x));
+              buf += Integer.toString(x) + ";";
            }
-           file.print("\n");
+           file.print(buf.substring(0,buf.length()-1) + "\n");
+           buf = "";
         }
         file.close();
    }
 
-   public void load() {}
+   public void load() {
+	LineFileReader file = new LineFileReader("scoreboard/" + this.name);
+	file.open();
+        String line = file.readLine();
+        System.out.println(line);
+        while (line != null) {
+           String score[] = line.split(";");
+           int t[] = new int[3];
+           for (int i = 0 ; i < score.length ; i++) {
+              t[i] = Integer.parseInt(score[i]);
+           }
+           this.scoreboard.add(t);
+           line = file.readLine();
+        }
+        file.close();
+   }
 }
