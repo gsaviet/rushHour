@@ -21,6 +21,7 @@ CLASSES = \
 	Rectangle.java \
 	Vehicule.java \
 	Parking.java \
+	ParkingFactory.java \
 	Grid.java \
 	RushHour2.java \
 	Player.java 
