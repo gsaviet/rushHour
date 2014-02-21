@@ -188,4 +188,14 @@ public class Rectangle
             canvas.erase(this);
         }
     }
+
+    public Point getPosition ()
+    {
+       return new java.awt.Point(this.xPosition, this.yPosition);
+    }
+
+    public String getColor ()
+    {
+       return this.color;
+    }
 }

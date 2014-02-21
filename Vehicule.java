@@ -1,5 +1,3 @@
-import java.awt.Point;
-
 /**
  * Cette classe permet de créer un véhicule
  * @author Denis Mahieux, Kévin Meyer, Levy Nguema, Hamza Oukabli
@@ -46,21 +44,12 @@ public class Vehicule extends Rectangle implements Constants {
 		}
 	}
 
-        public void init (int xPos, int yPos, String direction)
+        public int getLongueur ()
         {
-           changePosition(BORDER + SQUARE*xPos, BORDER + SQUARE*yPos);
-           if (direction.equals(VERTICAL))
-              changeSize(SQUARE, longueur*SQUARE);
-           else
-              changeSize(longueur*SQUARE, SQUARE);
-        }
-	
-        public Point getPosition()
-        {
-           return getPosition();
+           return longueur;
         }
 
-        public String getDirection(String direction)
+        public String getDirection ()
         {
            return direction;
         }
