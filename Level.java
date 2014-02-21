@@ -1,11 +1,16 @@
 import java.util.ArrayList;
+import java.io.File;
 
 public class Level
 {
    private ArrayList<ArrayList<Position>> lsConfig;
+   private String name;
 
    public Level (String pathLvlCfg)
    {
+      this.name = new File(pathLvlCfg).getName();
+      if (this.name.indexOf(".") > 0)
+         this.name = this.name.substring(0, this.name.lastIndexOf("."));
       lsConfig = new ArrayList<ArrayList<Position>>();
       LineFileReader file = new LineFileReader(pathLvlCfg);
       file.open();
@@ -25,6 +30,11 @@ public class Level
       for (String s : posCfg)
          config.add(new Position(s));
       return config;
+   }
+
+   public String getName ()
+   {
+      return this.name;
    }
 }
 

@@ -37,9 +37,9 @@ public class ParkingFactory
    {
       lsVehicles = new Hashtable<String, Vehicule>();
       readVehicDat();
-      System.out.println(lsVehicles.size());
       lsLvl = new ArrayList<Level>();
       readLvlCfg();
+      getListLevels();
    }
 
    private void readVehicDat ()
@@ -62,5 +62,17 @@ public class ParkingFactory
    {
       for (String pathLvlCfg : PATH_LVL)
          lsLvl.add(new Level(pathLvlCfg));
+   }
+
+   /**
+    * @return an array of string used to display every level available.
+    */
+   private String[] getListLevels ()
+   {
+      String[] listLevels = new String[lsLvl.size()];
+      int i = 0;
+      for (Level lvl : lsLvl)
+         listLevels[i++] = lvl.getName();
+      return listLevels;
    }
 }
