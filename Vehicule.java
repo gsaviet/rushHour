@@ -61,13 +61,7 @@ public class Vehicule extends Rectangle implements Constants {
       return direction;
    }
 
-   /**
-    * Permet d'afficher le véhicule sur le canvas.
-    */
-   public void visualiserVehicule() 
-   {
-      makeVisible();
-   }
+   // Remove useless function visualiserVehicule().
 
    /**
     * Permet de déplacer un véhicule dans une direction pour une distance donnée.

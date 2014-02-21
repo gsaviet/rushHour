@@ -35,7 +35,8 @@ public class Parking
          int posX, int posY, String direction)
    {
       tableVehicule.put(nom,new Vehicule(nom,couleur,longueur,posX,posY,direction));
-      getVehicule(nom).visualiserVehicule();
+      // Fix use of useless function.
+      getVehicule(nom).makeVisible();
    }
 
    /**
