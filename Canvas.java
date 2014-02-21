@@ -226,6 +226,18 @@ public class Canvas
     }
 
     /**
+     * Remove all the objects already in the canvas
+     * before creating a Parking.
+     * @param redraw if true redraw the canvas.
+     */
+    public void clearCanvas (boolean redraw)
+    {
+        objects = new ArrayList<Object>();
+        shapes = new HashMap<Object, ShapeDescription>();
+        if (redraw) redraw();
+    }
+
+    /**
      * Redraw ell shapes currently on the Canvas.
      */
     private void redraw()
