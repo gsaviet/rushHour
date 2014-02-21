@@ -2,13 +2,11 @@ import java.util.Hashtable;
 
 public class ParkingController
 {
-   private Hashtable<String,Vehicule> tableVehicule;
-
    public static boolean verif (Hashtable<String, Vehicule> tableVehicule,
          String nom, String direction, int move)
    {
       Vehicule car = tableVehicule.get(nom);
-      String direct = car.getDirection(direction);
+      String direct = car.getDirection();
       int x = car.getPosition().x;
       int y = car.getPosition().y;
 
