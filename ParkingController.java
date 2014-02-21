@@ -1,8 +1,6 @@
-import java.util.Hashtable;
-
 public class ParkingController
 {
-   public static boolean verif (Hashtable<String, Vehicule> tableVehicule,
+   public static boolean verif (java.util.Hashtable<String, Vehicule> tableVehicule,
          String nom, String direction, int move)
    {
       Vehicule car = tableVehicule.get(nom);
