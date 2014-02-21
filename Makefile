@@ -20,6 +20,7 @@ CLASSES = \
 	Canvas.java \
 	Rectangle.java \
 	Vehicule.java \
+	Level.java \
 	Parking.java \
 	ParkingFactory.java \
 	Grid.java \

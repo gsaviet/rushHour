@@ -1,4 +1,5 @@
 import java.util.Hashtable;
+import java.util.ArrayList;
 
 /**
  * Class which creates a Parking and fill it with data
@@ -30,12 +31,15 @@ public class ParkingFactory
    };
 
    private Hashtable<String, Vehicule> lsVehicles;
+   private ArrayList<Level> lsLvl;
 
    private ParkingFactory ()
    {
       lsVehicles = new Hashtable<String, Vehicule>();
       readVehicDat();
       System.out.println(lsVehicles.size());
+      lsLvl = new ArrayList<Level>();
+      readLvlCfg();
    }
 
    private void readVehicDat ()
@@ -52,5 +56,11 @@ public class ParkingFactory
          line = file.readLine();
       }
       file.close();
+   }
+
+   private void readLvlCfg ()
+   {
+      for (String pathLvlCfg : PATH_LVL)
+         lsLvl.add(new Level(pathLvlCfg));
    }
 }
