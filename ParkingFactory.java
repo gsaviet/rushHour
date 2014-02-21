@@ -39,7 +39,6 @@ public class ParkingFactory
       readVehicDat();
       lsLvl = new ArrayList<Level>();
       readLvlCfg();
-      getListLevels();
    }
 
    private void readVehicDat ()
@@ -74,5 +73,15 @@ public class ParkingFactory
       for (Level lvl : lsLvl)
          listLevels[i++] = lvl.getName();
       return listLevels;
+   }
+
+   /**
+    * @param idLvl index of a level in the list of level. The first level
+    *    has an id equals to 0.
+    * @return the number of configuration for the given level.
+    */
+   private int getNumberOfConfig (int idLvl)
+   {
+      return lsLvl.get(idLvl).getNumberOfConfiguration();
    }
 }

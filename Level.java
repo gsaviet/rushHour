@@ -36,6 +36,14 @@ public class Level
    {
       return this.name;
    }
+
+   /**
+    * @return the number of configurations available for this level.
+    */
+   public int getNumberOfConfiguration ()
+   {
+      return lsConfig.size();
+   }
 }
 
 class Position
