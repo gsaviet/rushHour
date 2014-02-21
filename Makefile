@@ -23,6 +23,7 @@ CLASSES = \
 	Level.java \
 	Parking.java \
 	ParkingFactory.java \
+	ParkingController.java \
 	Grid.java \
 	RushHour2.java \
 	Player.java 

@@ -1,3 +1,5 @@
+import java.awt.Point;
+
 /**
  * Cette classe permet de créer un véhicule
  * @author Denis Mahieux, Kévin Meyer, Levy Nguema, Hamza Oukabli
@@ -53,6 +55,16 @@ public class Vehicule extends Rectangle implements Constants {
               changeSize(longueur*SQUARE, SQUARE);
         }
 	
+        public Point getPosition()
+        {
+           return getPosition();
+        }
+
+        public String getDirection(String direction)
+        {
+           return direction;
+        }
+
 	/**
 	 * Permet d'afficher le véhicule sur le canvasS
 	 */
