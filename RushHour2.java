@@ -6,6 +6,8 @@ public class RushHour2
 {
    public static void main(String[] args)
    {
+      ParkingFactory.getParkingFactory();
+      ParkingFactory.getParkingFactory();
       //Création du parking
       Parking parking = new Parking();
 
