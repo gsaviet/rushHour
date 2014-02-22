@@ -6,6 +6,7 @@ public class RushHour2
 {
    public static void main(String[] args)
    {
+      /*
       Parking park = ParkingFactory.getParkingFactory().createParking(0, 1);
       //Suite des déplacements permettant la résolution du casse-tête
       park.move("PU3");
@@ -22,10 +23,12 @@ public class RushHour2
       park.move("PD3");
       park.move("OD3");
       park.move("XR5");
-      park = ParkingFactory.getParkingFactory().createParking(4, 1);
+      park = ParkingFactory.getParkingFactory().createParking(4, 1);*/
 
-      Player p = new Player("toto");
-      p.setScore(3,2,1);
-      p.setScore(3,2,4);
+      Player p = new Player("jean-edouard");
+      int score = p.play(0,1);
+      p.setScore(0,1,score);
+      score = p.play(4,1);
+      p.setScore(4,1,score);
    }
 }
