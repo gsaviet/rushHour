@@ -50,16 +50,31 @@ public class Parking
    }
 
    /**
+    * Move a vehicle in the parking if movement is correct.
+    * @param movement a string type by an user. Eg: 'XU1'
+    *    where X is the vehicle's name, U the sens and 1 the distance.
+    */
+   public void move (String movement)
+   {
+      final String name = movement.substring(0, 1);
+      final String sense = movement.substring(1, 2);
+      final int dist = Integer.parseInt(movement.substring(2, 3));
+
+      if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
+         getVehicule(name).move(sense, dist);
+   }
+
+   /*
     * Permet de déplacer sur la grille du Parking le véhicule
     * @param move "XYZ" : "X" correspond au nom du véhicule, "Y" à la direction, "Z" à la distance
     */
-   public void move(String move) 
-   {
-      char[] deplacement = move.toCharArray();
+   // public void move(String move) 
+   // {
+   //    char[] deplacement = move.toCharArray();
 
-      Vehicule vehicule = getVehicule(Character.toString(deplacement[0]));
+   //    Vehicule vehicule = getVehicule(Character.toString(deplacement[0]));
 
-      vehicule.deplacerVehicule(Character.toString(deplacement[1]),
-            Character.getNumericValue(deplacement[2]));
-   }
+   //    vehicule.deplacerVehicule(Character.toString(deplacement[1]),
+   //          Character.getNumericValue(deplacement[2]));
+   // }
 }
