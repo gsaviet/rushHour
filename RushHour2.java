@@ -6,6 +6,7 @@ public class RushHour2
 {
    public static void main(String[] args)
    {
+      /*
       ParkingFactory.getParkingFactory();
       ParkingFactory.getParkingFactory();
       //Création du parking
@@ -34,5 +35,9 @@ public class RushHour2
       parking.move("PD3");
       parking.move("OD3");
       parking.move("XR6");
+      */
+      Player p = new Player("toto");
+      p.setScore(3,2,1);
+      p.setScore(3,2,4);
    }
 }

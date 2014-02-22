@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.io.File;
 
-
 /**
  * Class wich creates a Player, command vehicules and save his score in a file.
  *
@@ -21,7 +20,7 @@ public class Player
       this.load();
    }
 
-   /*public int play() {
+   /*public int play(int level, int number) {
       //Parking parking = new Parking();
       String command
       while (command != 'exit') {
@@ -38,11 +37,15 @@ public class Player
       	int t[] = {level, number, score};
       	this.scoreboard.add(t);
       } else {
+
       }
       	this.save();
 
    }
 
+   /**
+    * @param level 
+    */
    public int getScore(int level, int number)
    {
 	for (int t[] : this.scoreboard) {
@@ -53,13 +56,16 @@ public class Player
         return -1;
    }
 
+   /**
+    * Save the score of the Player in a file.
+    */
    public void save()
    {
       File f = new File(SCORE_PATH);
       if ((f.exists() && f.isDirectory()) == false) {
        new File(SCORE_PATH).mkdir();
       }
-	LineFileWriter file = new LineFileWriter("scoreboard/" + this.name);
+	LineFileWriter file = new LineFileWriter(SCORE_PATH + this.name);
         file.open(false);
         String buf = "";
         for (int t[] : this.scoreboard) {
@@ -72,9 +78,12 @@ public class Player
         file.close();
    }
 
+   /**
+    * Load the score of the Player.
+    */
    public void load() 
    {
-	LineFileReader file = new LineFileReader("scoreboard/" + this.name);
+	LineFileReader file = new LineFileReader(SCORE_PATH + this.name);
 	Boolean isFileExist = file.open();
         if (isFileExist == true) {
            String line = file.readLine();
