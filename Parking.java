@@ -60,7 +60,7 @@ public class Parking
       final String sense = movement.substring(1, 2);
       final int dist = Integer.parseInt(movement.substring(2, 3));
 
-      if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
+      //if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
          getVehicule(name).move(sense, dist);
    }
 
