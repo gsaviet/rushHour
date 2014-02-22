@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /**
  * Class which creates a Parking and fill it with data
  * read from the configuration files.
+ * It can only be created once.
  *
  * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
@@ -125,5 +126,29 @@ public class ParkingFactory
    {
       if (idLvl >= lsLvl.size()) return -1;
       return lsLvl.get(idLvl).getNumberOfConfiguration();
+   }
+
+   /**
+    * Create and initialize a Parking with a level from one of
+    * the configuration file.
+    * @param idLvl index of the level of difficulty chosen by the player.
+    *    The first level is 0.
+    * @param idConfig index of the configuration chosen by the player.
+    *    The first configuration is 0.
+    * @return the parking ready to play.
+    */
+   public Parking createParking (int idLvl, int idConfig)
+   {
+      Canvas.getCanvas().clearCanvas(false);
+      Parking park = new Parking();
+
+      ArrayList<Position> lsPos = lsLvl.get(idLvl).getConfig(idConfig);
+      for (Position p : lsPos)
+      {
+         Vehicule v = lsVehicles.get(p.name);
+         park.addVehicule(p.name, v.getColor(), v.getLongueur(),
+               p.x, p.y, p.direction);
+      }
+      return park;
    }
 }
