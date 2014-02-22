@@ -1,6 +1,11 @@
 import java.util.ArrayList;
-import java.io.File;
 
+/**
+ * Class use for loading data from the level.cfg files.
+ * A level is one file which is composed of several
+ * configuration. A config is a list of starting position
+ * for the vehicle.
+ */
 public class Level
 {
    /**
@@ -23,7 +28,7 @@ public class Level
    public Level (String pathLvlCfg)
    {
       // Get the name.
-      this.name = new File(pathLvlCfg).getName();
+      this.name = new java.io.File(pathLvlCfg).getName();
       if (this.name.indexOf(".") > 0)
          this.name = this.name.substring(0, this.name.lastIndexOf("."));
 
@@ -42,6 +47,12 @@ public class Level
       file.close();
    }
 
+   /**
+    * Create a configuration which is a list of Position.
+    * @param lineLvlCfg a line of a level.cfg file that store data
+    *    about a configuration. 4 letters words (such as XH02)
+    *    separated by spaces.
+    */
    private ArrayList<Position> createConfiguration (String lineLvlCfg)
    {
       ArrayList<Position> config = new ArrayList<Position>();
@@ -67,23 +78,14 @@ public class Level
    {
       return lsConfig.size();
    }
-}
 
-class Position
-{
-   /** Vehicle's name. */
-   public String name;
-   /** Vehicle's direction. Eg: "H" or "V" */
-   public String direction;
-   /** Vehicle's position. */
-   public int x;
-   public int y;
-
-   public Position (String posCfg)
+   /**
+    * @param idConfig index of a config in the list of configuration.
+    * @return the list of vehicles' position at the beginning
+    *    of a level for the given configuration.
+    */
+   public ArrayList<Position> getConfig (int idConfig)
    {
-      this.name = posCfg.substring(0, 1);
-      this.direction = posCfg.substring(1, 2);
-      this.x = Integer.parseInt(posCfg.substring(2, 3));
-      this.y = Integer.parseInt(posCfg.substring(3));
+      return lsConfig.get(idConfig);
    }
 }

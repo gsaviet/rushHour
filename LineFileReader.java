@@ -1,47 +1,55 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-public class LineFileReader {
-	
-	private String filename;
-	private BufferedReader reader;
-	
-	public LineFileReader(String filename) {
-		this.filename = filename;
-	}
-	
-	public boolean open() {
-		try {
-			reader = new BufferedReader(new FileReader(filename));
-			return true;
-		} catch (IOException e) {
-			System.err.println("Error while opening file \"" + filename + "\"");
-		}
-		return false;
-	}
-	
-	public String readLine() {
-		String line = null;
-		if (reader != null) {
-			try {
-				line = reader.readLine();
-			} catch (IOException e) {
-				System.err.println("Error while reading file \"" + filename + "\"");
-			}
-		}
-		return line;
-	}
-	
-	public boolean close() {
-		if (reader != null) {
-			try {
-				reader.close();
-				return true;
-			} catch (IOException e) {
-				System.err.println("Error while closing file \"" + filename + "\"");
-			}
-		}
-		return false;
-	}
-}	
-	
-		
+public class LineFileReader
+{
+   private String filename;
+   private BufferedReader reader;
+
+   public LineFileReader (String filename)
+   {
+      this.filename = filename;
+   }
+
+   public boolean open ()
+   {
+      try {
+         reader = new BufferedReader(new FileReader(filename));
+         return true;
+      } catch (IOException e) {
+         System.err.println("Error while opening file \"" + filename + "\"");
+      }
+      return false;
+   }
+
+   public String readLine ()
+   {
+      String line = null;
+      if (reader != null)
+      {
+         try {
+            line = reader.readLine();
+         } catch (IOException e) {
+            System.err.println("Error while reading file \"" + filename + "\"");
+         }
+      }
+      return line;
+   }
+
+   public boolean close ()
+   {
+      if (reader != null)
+      {
+         try {
+            reader.close();
+            return true;
+         } catch (IOException e) {
+            System.err.println("Error while closing file \"" + filename + "\"");
+         }
+      }
+      return false;
+   }
+}
+
+

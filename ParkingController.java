@@ -1,65 +1,70 @@
-import java.util.Hashtable;
-
 public class ParkingController
 {
-   private Hashtable<String,Vehicule> tableVehicule;
-
-   public static boolean verif (Hashtable<String, Vehicule> tableVehicule,
-         String nom, String direction, int move)
+   public static boolean checkMovement (String name, String sense, int distance,
+         java.util.Hashtable<String, Vehicule> lsVehicles)
    {
-      Vehicule car = tableVehicule.get(nom);
-      String direct = car.getDirection(direction);
-      int x = car.getPosition().x;
-      int y = car.getPosition().y;
+      final Vehicule v = lsVehicles.get(name);
+      final String direction = v.getDirection();
+      final java.awt.Point pos = v.getPosition();
 
-      if(verifDirection(direct, direction))
-         if(verifMove(move, direct, x, y, direction))
-            if(verifE())
-               return true;
+      System.out.println("0");
 
-      return false;
+      if (!checkSense(sense, direction))
+         return false;
+
+      System.out.println("1");
+      if (!checkDistance(distance, sense, direction, pos))
+         return false;
+
+      System.out.println("2");
+      if (!checkOverlap())
+         return false;
+
+      System.out.println("3");
+      return true;
    }
 
-   private static boolean verifDirection (String direct, String sens)
+   private static boolean checkSense (String sense, String direction)
    {
-      if (Constants.HORIZONTAL.equals(direct))
-         if (Constants.RIGHT.equals(sens) || Constants.LEFT.equals(sens))
+      if (Constants.HORIZONTAL.equals(direction))
+         if (Constants.RIGHT.equals(sense) || Constants.LEFT.equals(sense))
             return true;
          else
             return false;
       else
-         if (Constants.UP.equals(sens) || Constants.DOWN.equals(sens))
+         if (Constants.UP.equals(sense) || Constants.DOWN.equals(sense))
             return true;
          else
             return false;
    }
 
-   private static boolean verifMove (int move, String direct,
-         int x, int y, String sens)
+   // sans direction + voiture X peut sortir.
+   private static boolean checkDistance (int distance, String sense,
+         String direction, java.awt.Point pos)
    {
-      if (Constants.HORIZONTAL.equals(direct))
-         if (Constants.RIGHT.equals(sens))
-            if (((x + move) * Constants.SQUARE) < 6)
+      if (Constants.HORIZONTAL.equals(direction))
+         if (Constants.RIGHT.equals(sense))
+            if (((pos.x + distance) * Constants.SQUARE) < 6)
                return true;
             else return false;
          else 
-            if(((x - move) * Constants.SQUARE) > 0)
+            if (((pos.x - distance) * Constants.SQUARE) > 0)
                return true;
             else return false;
       else
-         if(Constants.DOWN.equals(sens))
-            if(((y + move) * Constants.SQUARE) < 6)
+         if (Constants.DOWN.equals(sense))
+            if (((pos.y + distance) * Constants.SQUARE) < 6)
                return true;
             else return false;
 
          else 
-            if(((y - move) * Constants.SQUARE) > 0)
+            if (((pos.y - distance) * Constants.SQUARE) > 0)
                return true;
             else return false;
    }
 
-   private static boolean verifE()
+   private static boolean checkOverlap ()
    {
-      return false;
+      return true;
    }
 }
