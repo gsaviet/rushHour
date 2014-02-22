@@ -12,6 +12,7 @@ public class Vehicule extends Rectangle implements Constants {
 
    /**
     * Direction du véhicule, doit correspondre à l'une des constantes.
+    * "H" or "V".
     */
    private String direction;
 
@@ -63,16 +64,29 @@ public class Vehicule extends Rectangle implements Constants {
 
    // Remove useless function visualiserVehicule().
 
-   /**
+   public void move (String sense, int distance)
+   {
+      if (LEFT.equals(sense))
+         slowMoveHorizontal(-distance * SQUARE);
+      else if (RIGHT.equals(sense))
+         slowMoveHorizontal(distance * SQUARE);
+      else if (UP.equals(sense))
+         slowMoveVertical(-distance * SQUARE);
+      else if (DOWN.equals(sense))
+         slowMoveVertical(distance * SQUARE);
+   }
+
+   // Rename method
+   /*
     * Permet de déplacer un véhicule dans une direction pour une distance donnée.
     * @param direction Direction du déplacement (doit correspondre à l'une des constantes)
     * @param distance Distance en nombre de case du déplacement
     */
-   public void deplacerVehicule(String direction,int distance) 
-   {
-      if(direction.equals(LEFT)) slowMoveHorizontal(-distance*SQUARE);
-      else if(direction.equals(RIGHT)) slowMoveHorizontal(distance*SQUARE);
-      else if(direction.equals(UP)) slowMoveVertical(-distance*SQUARE);
-      else if(direction.equals(DOWN)) slowMoveVertical(distance*SQUARE);
-   }
+   // public void deplacerVehicule(String direction,int distance) 
+   // {
+   //    if(direction.equals(LEFT)) slowMoveHorizontal(-distance*SQUARE);
+   //    else if(direction.equals(RIGHT)) slowMoveHorizontal(distance*SQUARE);
+   //    else if(direction.equals(UP)) slowMoveVertical(-distance*SQUARE);
+   //    else if(direction.equals(DOWN)) slowMoveVertical(distance*SQUARE);
+   // }
 }
