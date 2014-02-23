@@ -54,7 +54,8 @@ public class Parking
     * @param movement a string type by an user. Eg: 'XU1'
     *    where X is the vehicle's name, U the sense and 1 the distance.
     */
-   public void move (String movement) throws IllegalMovementException
+   public void move (String movement)
+      throws IllegalMovementException, VictoryException
    {
       final String name = movement.substring(0, 1);
       final String sense = movement.substring(1, 2);
@@ -67,7 +68,7 @@ public class Parking
       }
       catch (VictoryException e) {
          getVehicule(name).move(sense, dist);
-         System.out.println(e);
+         throw e;
       }
    }
 

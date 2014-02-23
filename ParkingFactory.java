@@ -105,7 +105,7 @@ public class ParkingFactory
    /**
     * @return an array of string used to display every level available.
     */
-   private String[] getListLevels ()
+   public String[] getListLevels ()
    {
       String[] listLevels = new String[lsLvl.size()];
       int i = 0;
@@ -122,7 +122,7 @@ public class ParkingFactory
     * @return the number of configuration for the given level.
     *    Or -1 if the level isn't available.
     */
-   private int getNumberOfConfig (int idLvl)
+   public int getNumberOfConfig (int idLvl)
    {
       if (idLvl >= lsLvl.size()) return -1;
       return lsLvl.get(idLvl).getNumberOfConfiguration();

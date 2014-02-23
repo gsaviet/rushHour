@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
 
 /**
  * Class wich creates a Player, command vehicules and save his score in a file.
@@ -31,27 +29,36 @@ public class Player
     * @param idConfig index of the configuration chosen by the player.
     * @return the number of shots. -1 if the Player type "exit".
     */
-   public int play (int idLvl, int idConfig) {
-      Parking park = ParkingFactory.getParkingFactory().createParking(idLvl, idConfig);
-      Scanner sc = new Scanner(System.in);
-      String movement;
+   public int play (int idLvl, int idConfig)
+   {
+      System.out.println();
+      System.out.println("Level " + (idLvl + 1) + " Config " + (idConfig + 1));
+      final Parking park = ParkingFactory.getParkingFactory().createParking(idLvl, idConfig);
+      final java.util.Scanner sc = new java.util.Scanner(System.in);
       int score = 0;
-      do {
-         System.out.println("Please, enter a movement to do (exit to quit) : ");
-         movement = sc.nextLine();
-         if ("exit".equals(movement)) {
-           score = -1;
-           break;
+      while (true)
+      {
+         System.out.print("Enter a movement (exit to quit) : ");
+
+         if (!sc.hasNextLine()) // quit when Ctrl+d is pressed.
+         {
+            System.out.println();
+            return -1;
          }
+
+         final String movement = sc.nextLine().toUpperCase();
+         if ("EXIT".equals(movement)) return -1; // quit
          try {
-            park.move(movement.toUpperCase());
-            score += 1;
-         } catch (Exception e) {
-            System.out.println("Sorry, but this movement is not valid.");
-         }
-         //TODO Add a condition when red car is out parking.
-      } while (true);
-      return score;
+            park.move(movement);
+            ++score;
+         } catch (IllegalMovementException e) {
+            System.out.println(e + " is not a valid movement.");
+         } catch (VictoryException e) {
+            System.out.println(e);
+            System.out.println("Your score is :" + ++score);
+            return score;
+         } catch (Exception e) { System.out.println("CACA");}
+      }
    }
 
    /**
@@ -64,18 +71,13 @@ public class Player
     */
    public void setScore (int idLvl, int idConfig, int score)
    {
-      if (this.getScore(idLvl, idConfig) == -1) {
-         int t[] = {idLvl, idConfig, score};
-         this.scoreboard.add(t);
-      } else {
-         for (int i = 0 ; i < this.scoreboard.size() ; i++) {
-            int t[] = this.scoreboard.get(i);
-            if (t[0] == idLvl && t[1] == idConfig && t[2] > score) {
-               int newScoreArray[] = {idLvl, idConfig, score};
-               this.scoreboard.set(i, newScoreArray);
-            }
-         }
-      }
+      if (this.getScore(idLvl, idConfig) == -1)
+         this.scoreboard.add(new int[]{idLvl, idConfig, score});
+      else
+         for (int t[] : this.scoreboard)
+            if (t[0] == idLvl && t[1] == idConfig && t[2] > score)
+               this.scoreboard.set(scoreboard.indexOf(t),
+                     new int[]{idLvl, idConfig, score});
       this.save();
    }
 
@@ -87,11 +89,9 @@ public class Player
     */
    public int getScore (int idLvl, int idConfig)
    {
-      for (int t[] : this.scoreboard) {
-         if (t[0] == idLvl && t[1] == idConfig) {
+      for (int t[] : this.scoreboard)
+         if (t[0] == idLvl && t[1] == idConfig)
             return t[2];
-         }
-      }
       return -1;
    }
 
@@ -100,38 +100,38 @@ public class Player
     */
    public void save ()
    {
-      File f = new File(SCORE_PATH);
-      if ((f.exists() && f.isDirectory()) == false) {
-         new File(SCORE_PATH).mkdir();
-      }
-      LineFileWriter file = new LineFileWriter(SCORE_PATH + this.name);
+      // check if the score directory exists, else create it.
+      final java.io.File f = new java.io.File(SCORE_PATH);
+      if ((f.exists() && f.isDirectory()) == false)
+         f.mkdir();
+
+      final LineFileWriter file = new LineFileWriter(SCORE_PATH + this.name);
       file.open(false);
-      String buf = "";
+      String buf = ""; // use a buffer to remove the last ";"
       for (int t[] : this.scoreboard) {
-         for (int x : t) {
+         for (int x : t)
             buf += Integer.toString(x) + ";";
-         }
-         file.print(buf.substring(0,buf.length()-1) + "\n");
+         file.println(buf.substring(0, buf.length() - 1));
          buf = "";
       }
       file.close();
    }
 
    /**
-    * Load the score of the Player read in the file..
+    * Load this Player's best score from a file.
     */
    public void load () 
    {
-      LineFileReader file = new LineFileReader(SCORE_PATH + this.name);
-      Boolean isFileExist = file.open();
-      if (isFileExist == true) {
+      final LineFileReader file = new LineFileReader(SCORE_PATH + this.name);
+      if (file.open())
+      {
          String line = file.readLine();
-         while (line != null) {
-            String score[] = line.split(";");
+         while (line != null)
+         {
+            final String score[] = line.split(";");
             int t[] = new int[3];
-            for (int i = 0 ; i < score.length ; i++) {
+            for (int i = 0 ; i < score.length ; i++)
                t[i] = Integer.parseInt(score[i]);
-            }
             this.scoreboard.add(t);
             line = file.readLine();
          }
