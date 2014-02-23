@@ -53,6 +53,8 @@ public class Parking
     * Move a vehicle in the parking if movement is correct.
     * @param movement a string type by an user. Eg: 'XU1'
     *    where X is the vehicle's name, U the sense and 1 the distance.
+    * @throws IllegalMovementException when players try to make a bad move.
+    * @throws VictoryException when players finish a level.
     */
    public void move (String movement)
       throws IllegalMovementException, VictoryException
@@ -71,18 +73,4 @@ public class Parking
          throw e;
       }
    }
-
-   /*
-    * Permet de déplacer sur la grille du Parking le véhicule
-    * @param move "XYZ" : "X" correspond au nom du véhicule, "Y" à la direction, "Z" à la distance
-    */
-   // public void move(String move) 
-   // {
-   //    char[] deplacement = move.toCharArray();
-
-   //    Vehicule vehicule = getVehicule(Character.toString(deplacement[0]));
-
-   //    vehicule.deplacerVehicule(Character.toString(deplacement[1]),
-   //          Character.getNumericValue(deplacement[2]));
-   // }
 }

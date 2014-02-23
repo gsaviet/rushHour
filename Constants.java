@@ -1,5 +1,6 @@
 /**
  * A set of constants used in the RushHour program.
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
 public interface Constants
 {
@@ -11,6 +12,7 @@ public interface Constants
 
    // constants to represent directions
    public static final String HORIZONTAL = "H", VERTICAL = "V";
+   // constants to represent movement's sense.
    public static final String LEFT = "L", RIGHT = "R";
    public static final String UP = "U", DOWN = "D";
 

@@ -4,6 +4,8 @@
  *    – N is a char for the vehicle's name.
  *    - D is a char for the vehicle's direction. (H or V)
  *    - x and y for the vehicle's position.
+ *
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
 public class Position
 {

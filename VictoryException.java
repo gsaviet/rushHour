@@ -1,3 +1,6 @@
+/**
+ * Exception throw when a player win.
+ */
 public class VictoryException extends Exception
 {
    public VictoryException () { super(); }

@@ -64,6 +64,12 @@ public class Vehicule extends Rectangle implements Constants {
 
    // Remove useless function visualiserVehicule().
 
+   // Rename the method to move
+   /**
+    * Move this vehicle.
+    * @param sense movement's sense.
+    * @param distance movement's distance.
+    */
    public void move (String sense, int distance)
    {
       if (LEFT.equals(sense))
@@ -75,18 +81,4 @@ public class Vehicule extends Rectangle implements Constants {
       else if (DOWN.equals(sense))
          slowMoveVertical(distance * SQUARE);
    }
-
-   // Rename method
-   /*
-    * Permet de déplacer un véhicule dans une direction pour une distance donnée.
-    * @param direction Direction du déplacement (doit correspondre à l'une des constantes)
-    * @param distance Distance en nombre de case du déplacement
-    */
-   // public void deplacerVehicule(String direction,int distance) 
-   // {
-   //    if(direction.equals(LEFT)) slowMoveHorizontal(-distance*SQUARE);
-   //    else if(direction.equals(RIGHT)) slowMoveHorizontal(distance*SQUARE);
-   //    else if(direction.equals(UP)) slowMoveVertical(-distance*SQUARE);
-   //    else if(direction.equals(DOWN)) slowMoveVertical(distance*SQUARE);
-   // }
 }

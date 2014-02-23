@@ -5,6 +5,8 @@ import java.util.ArrayList;
  * A level is one file which is composed of several
  * configuration. A config is a list of starting position
  * for the vehicle.
+ *
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
 public class Level
 {
