@@ -146,7 +146,7 @@ public class ParkingFactory
       for (Position p : lsPos)
       {
          Vehicule v = lsVehicles.get(p.name);
-         park.addVehicule(p.name, v.getColor(), v.getLongueur(),
+         park.addVehicule(p.name, v.getColor(), v.getSize(),
                p.x, p.y, p.direction);
       }
       return park;

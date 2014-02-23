@@ -49,7 +49,7 @@ public class Vehicule extends Rectangle implements Constants {
    /**
     * @return this vehicule's size (2 or 3).
     */
-   public int getLongueur ()
+   public int getSize ()
    {
       return longueur;
    }
