@@ -7,13 +7,18 @@ import java.util.ArrayList;
  */
 public class Player
 {
+   // This Player's name.
    private String name;
+
+   // For keeping the score.
    private ArrayList<int[]> scoreboard;
+
+   // Path to the directory which contains the score's files.
    private static final String SCORE_PATH = "scoreboard/"; 
 
    /**
-    * Construct the Player. Only the name of the Player is needed. The constructer
-    * load the score of the player.
+    * Construct the Player. Only the player's name is needed.
+    * The constructor load player's score.
     */
    public Player (String name)
    {
@@ -23,19 +28,23 @@ public class Player
    }
 
    /**
-    * Creates a Parking with the level and configuration given. Allow user to move
-    * the vehicules.
+    * Creates a Parking with the level and configuration given.
+    * Allow user to move the vehicles.
     * @param idLvl index of the level of difficulty chosen by the player.
     * @param idConfig index of the configuration chosen by the player.
-    * @return the number of shots. -1 if the Player type "exit".
+    * @return the score, ie the number of movement.
+    *       -1 if the Player type "exit".
     */
    public int play (int idLvl, int idConfig)
    {
+      int score = this.getScore(idLvl, idConfig);
       System.out.println();
       System.out.println("Level " + (idLvl + 1) + " Config " + (idConfig + 1));
+      if (score != -1)
+         System.out.println("Your best score for this level is " + score);
+      score = 0;
       final Parking park = ParkingFactory.getParkingFactory().createParking(idLvl, idConfig);
       final java.util.Scanner sc = new java.util.Scanner(System.in);
-      int score = 0;
       while (true)
       {
          System.out.print("Enter a movement (exit to quit) : ");
@@ -62,11 +71,11 @@ public class Player
    }
 
    /**
-    * Add the score to the scoreboard and call save() to save 
-    * it in a file. Only the best score is saved. The best score is the lower 
-    * number of shots the player do.
+    * Add the score to the scoreboard and call save() to save
+    * it in a file. Only the best score is saved.
+    * The best score is the lowest number of movement the player has done.
     * @param idLvl index of the level of difficulty.
-    * @param idConfig index of the configuation's level.
+    * @param idConfig index of the configuration's level.
     * @param score of the player.
     */
    public void setScore (int idLvl, int idConfig, int score)
@@ -74,7 +83,7 @@ public class Player
       if (this.getScore(idLvl, idConfig) == -1)
          this.scoreboard.add(new int[]{idLvl, idConfig, score});
       else
-         for (int t[] : this.scoreboard)
+         for (int[] t : this.scoreboard)
             if (t[0] == idLvl && t[1] == idConfig && t[2] > score)
                this.scoreboard.set(scoreboard.indexOf(t),
                      new int[]{idLvl, idConfig, score});
@@ -89,7 +98,7 @@ public class Player
     */
    public int getScore (int idLvl, int idConfig)
    {
-      for (int t[] : this.scoreboard)
+      for (int[] t : this.scoreboard)
          if (t[0] == idLvl && t[1] == idConfig)
             return t[2];
       return -1;
@@ -108,7 +117,8 @@ public class Player
       final LineFileWriter file = new LineFileWriter(SCORE_PATH + this.name);
       file.open(false);
       String buf = ""; // use a buffer to remove the last ";"
-      for (int t[] : this.scoreboard) {
+      for (int[] t : this.scoreboard)
+      {
          for (int x : t)
             buf += Integer.toString(x) + ";";
          file.println(buf.substring(0, buf.length() - 1));
@@ -128,8 +138,8 @@ public class Player
          String line = file.readLine();
          while (line != null)
          {
-            final String score[] = line.split(";");
-            int t[] = new int[3];
+            final String[] score = line.split(";");
+            int[] t = new int[3];
             for (int i = 0 ; i < score.length ; i++)
                t[i] = Integer.parseInt(score[i]);
             this.scoreboard.add(t);
@@ -137,5 +147,18 @@ public class Player
          }
       }
       file.close();
+   }
+
+   /**
+    * @return the hardest level's index that the player had finished.
+    */
+   public int getHardestLvlDone ()
+   {
+      int hardestLvl = 0;
+      for (int[] t : this.scoreboard)
+         if (hardestLvl < t[0] && t[2] != -1)
+            hardestLvl = t[0];
+
+      return hardestLvl;
    }
 }
