@@ -37,6 +37,21 @@ public class LineFileWriter
       return false;
    }
 
+   public boolean println (String line)
+   {
+      if (writer != null)
+      {
+         try {
+            writer.write(line);
+            writer.newLine();
+            return true;
+         } catch (IOException e) {
+            System.err.println("Error while writing to file \"" + filename + "\"");
+         }
+      }
+      return false;
+   }
+
    public boolean close ()
    {
       if (writer != null)
