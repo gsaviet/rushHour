@@ -4,7 +4,7 @@
  */
 public class RushHour2
 {
-   public static void main(String[] args)
+   public static void main(String[] args) throws IllegalMovementException
    {
       Parking park = ParkingFactory.getParkingFactory().createParking(0, 1);
       //Suite des déplacements permettant la résolution du casse-tête
