@@ -39,34 +39,46 @@ public class Player
    {
       int score = this.getScore(idLvl, idConfig);
       System.out.println();
-      System.out.println("Level " + (idLvl + 1) + " Config " + (idConfig + 1));
+      System.out.println("=====> Level " + (idLvl + 1)
+            + "  Config " + (idConfig + 1) +" <=====");
       if (score != -1)
-         System.out.println("Your best score for this level is " + score);
+         System.out.println("Your best score for this level is " + score + ".");
       score = 0;
+      System.out.println("Enter exit or quit to quit.");
+
       final Parking park = ParkingFactory.getParkingFactory().createParking(idLvl, idConfig);
       final java.util.Scanner sc = new java.util.Scanner(System.in);
+
       while (true)
       {
-         System.out.print("Enter a movement (exit to quit) : ");
+         // Ask user.
+         System.out.print("movement? ");
 
          if (!sc.hasNextLine()) // quit when Ctrl+d is pressed.
          {
-            System.out.println();
+            System.out.println("exit");
             return -1;
          }
 
          final String movement = sc.nextLine().toUpperCase();
-         if ("EXIT".equals(movement)) return -1; // quit
+         if ("EXIT".equals(movement) || "QUIT".equals(movement)
+               || "Q".equals(movement)) return -1; // quit
+
          try {
             park.move(new Movement(movement));
             ++score;
          } catch (IllegalMovementException e) {
             System.out.println(e + " is not a valid movement.");
          } catch (VictoryException e) {
-            System.out.println(e);
+            System.out.println("Victory");
             System.out.println("Your score is :" + ++score);
             return score;
-         } catch (Exception e) { System.out.println("CACA");}
+         } catch (Exception e) {
+            System.out.println("Syntax error: a movement has the following format XU1.");
+            System.out.println("Where X is the vehicle's name. U the sense.");
+            System.out.println("U for Up, D for Down, L for Left and R for Right.");
+            System.out.println("And where 1 is the distance in number of square.");
+         }
       }
    }
 

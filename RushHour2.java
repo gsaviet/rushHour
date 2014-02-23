@@ -36,7 +36,7 @@ public class RushHour2
     */
    public static void exit (int code)
    {
-      System.out.println();
+      System.out.println("exit");
       Canvas.getCanvas().close();
       if (RushHour2.sc != null) sc.close();
       System.exit(code);
@@ -60,7 +60,7 @@ public class RushHour2
    {
       final String[] lsLvl = ParkingFactory.getParkingFactory().getListLevels();
       // Display level available.
-      System.out.print("Level of difficulty available: ");
+      System.out.println("Level of difficulty available: ");
       for (String lvl : lsLvl)
          System.out.println("	 - "+ lvl);
 
