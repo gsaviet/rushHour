@@ -52,16 +52,23 @@ public class Parking
    /**
     * Move a vehicle in the parking if movement is correct.
     * @param movement a string type by an user. Eg: 'XU1'
-    *    where X is the vehicle's name, U the sens and 1 the distance.
+    *    where X is the vehicle's name, U the sense and 1 the distance.
     */
-   public void move (String movement)
+   public void move (String movement) throws IllegalMovementException
    {
       final String name = movement.substring(0, 1);
       final String sense = movement.substring(1, 2);
       final int dist = Integer.parseInt(movement.substring(2, 3));
 
-      //if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
+      try {
+         if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
+            getVehicule(name).move(sense, dist);
+         else throw new IllegalMovementException(movement);
+      }
+      catch (VictoryException e) {
          getVehicule(name).move(sense, dist);
+         System.out.println(e);
+      }
    }
 
    /*

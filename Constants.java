@@ -14,8 +14,11 @@ public interface Constants
    public static final String LEFT = "L", RIGHT = "R";
    public static final String UP = "U", DOWN = "D";
 
+   // number of square in a row.
+   public static final int NB_SQUARE = 6;
    // dimensions in pixels
    public static final int SQUARE = 30; // the side of a square in the grid
    public static final int BORDER = 4; // the width of a border in the grid 
-   public static final int SIZE = 6*SQUARE+2*BORDER; // the total size of the window (height or width)
+   // the total size of the window (height or width)
+   public static final int SIZE = NB_SQUARE*SQUARE + 2*BORDER;
 }

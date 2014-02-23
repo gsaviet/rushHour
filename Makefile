@@ -14,19 +14,22 @@ JFLAGS = -g
 	$(JC) $(JFLAGS) $*.java
 
 CLASSES = \
+	VictoryException.java \
+	IllegalMovementException.java \
 	LineFileWriter.java \
 	LineFileReader.java \
 	Constants.java \
 	Canvas.java \
 	Rectangle.java \
 	Vehicule.java \
-	Level.java \
-	Parking.java \
-	ParkingFactory.java \
 	ParkingController.java \
 	Grid.java \
-	RushHour2.java \
-	Player.java 
+	Parking.java \
+	Position.java \
+	Level.java \
+	ParkingFactory.java \
+	Player.java  \
+	RushHour2.java
 
 
 GAMENAME = rushHour
