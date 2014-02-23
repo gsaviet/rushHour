@@ -67,18 +67,17 @@ public class Vehicule extends Rectangle implements Constants {
    // Rename the method to move
    /**
     * Move this vehicle.
-    * @param sense movement's sense.
-    * @param distance movement's distance.
+    * @param m movement's info.
     */
-   public void move (String sense, int distance)
+   public void move (Movement m)
    {
-      if (LEFT.equals(sense))
-         slowMoveHorizontal(-distance * SQUARE);
-      else if (RIGHT.equals(sense))
-         slowMoveHorizontal(distance * SQUARE);
-      else if (UP.equals(sense))
-         slowMoveVertical(-distance * SQUARE);
-      else if (DOWN.equals(sense))
-         slowMoveVertical(distance * SQUARE);
+      if (LEFT.equals(m.sense))
+         slowMoveHorizontal(-m.dist * SQUARE);
+      else if (RIGHT.equals(m.sense))
+         slowMoveHorizontal(m.dist * SQUARE);
+      else if (UP.equals(m.sense))
+         slowMoveVertical(-m.dist * SQUARE);
+      else if (DOWN.equals(m.sense))
+         slowMoveVertical(m.dist * SQUARE);
    }
 }

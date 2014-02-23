@@ -51,25 +51,19 @@ public class Parking
 
    /**
     * Move a vehicle in the parking if movement is correct.
-    * @param movement a string type by an user. Eg: 'XU1'
-    *    where X is the vehicle's name, U the sense and 1 the distance.
+    * @param m a valid Movement.
     * @throws IllegalMovementException when players try to make a bad move.
     * @throws VictoryException when players finish a level.
     */
-   public void move (String movement)
-      throws IllegalMovementException, VictoryException
+   public void move (Movement m) throws IllegalMovementException, VictoryException
    {
-      final String name = movement.substring(0, 1);
-      final String sense = movement.substring(1, 2);
-      final int dist = Integer.parseInt(movement.substring(2, 3));
-
       try {
-         if (ParkingController.checkMovement(name, sense, dist, tableVehicule))
-            getVehicule(name).move(sense, dist);
-         else throw new IllegalMovementException(movement);
+         if (ParkingController.checkMovement(m, tableVehicule))
+            getVehicule(m.name).move(m);
+         else throw new IllegalMovementException();
       }
       catch (VictoryException e) {
-         getVehicule(name).move(sense, dist);
+         getVehicule(m.name).move(m);
          throw e;
       }
    }

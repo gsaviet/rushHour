@@ -1,25 +1,26 @@
 import java.awt.Point;
+import java.util.Hashtable;
 
 public class ParkingController
 {
-   public static boolean checkMovement (String name, String sense, int distance,
-         java.util.Hashtable<String, Vehicule> lsVehicles) throws VictoryException
+   public static boolean checkMovement (Movement move,
+         Hashtable<String, Vehicule> lsVehicles) throws VictoryException
    {
-      final Vehicule v = lsVehicles.get(name);
+      final Vehicule vMoving = lsVehicles.get(move.name);
 
-      if (!checkSense(sense, v.getDirection()))
+      if (!checkSense(move.sense, vMoving.getDirection()))
          return false;
 
       try {
-         if (!checkDistance(distance, sense, name,
-                  ParkingController.convertInNbSquare(v.getPosition()), v.getSize()))
+         if (!checkDistance(move, vMoving.getSize(),
+                  ParkingController.convertInNbSquare(vMoving.getPosition())))
             return false;
 
-         if (!checkOverlap(lsVehicles, name, sense, distance, v))
+         if (!checkOverlap(lsVehicles, move, vMoving))
             return false;
       } catch (VictoryException e) {
          try {
-            if (!checkOverlap(lsVehicles, name, sense, distance, v))
+            if (!checkOverlap(lsVehicles, move, vMoving))
                return false;
          } catch (ArrayIndexOutOfBoundsException ex) {
             throw new VictoryException("!!! VICTORY !!!");
@@ -43,62 +44,58 @@ public class ParkingController
             return false;
    }
 
-   private static boolean checkDistance (int distance, String sense,
-         String name, Point pos, int size) throws VictoryException
+   private static boolean checkDistance (Movement move, int size, Point pos)
+      throws VictoryException
    {
-      if (Constants.RIGHT.equals(sense))
+      if (Constants.RIGHT.equals(move.sense))
       {
-         if ((pos.x + distance + size) <= Constants.NB_SQUARE)
+         if ((pos.x + move.dist + size) <= Constants.NB_SQUARE)
             return true;
-         else if ("X".equals(name))
+         else if ("X".equals(move.name))
             throw new VictoryException();
       }
-      else if (Constants.LEFT.equals(sense))
+      else if (Constants.LEFT.equals(move.sense))
       {
-         if ((pos.x - distance) >= 0)
+         if ((pos.x - move.dist) >= 0)
             return true;
       }
-      else if (Constants.DOWN.equals(sense))
+      else if (Constants.DOWN.equals(move.sense))
       {
-         if ((pos.y + distance + size) <= Constants.NB_SQUARE)
+         if ((pos.y + move.dist + size) <= Constants.NB_SQUARE)
             return true;
       }
       else
       {
-         if ((pos.y - distance) >= 0)
+         if ((pos.y - move.dist) >= 0)
             return true;
       }
 
       return false;
    }
 
-   private static boolean checkOverlap (java.util.Hashtable<String, Vehicule> lsVehicles,
-         String name, String sense, int distance, Vehicule vMoving)
+   private static boolean checkOverlap (Hashtable<String, Vehicule> lsVehicles,
+         Movement move, Vehicule vMoving)
    {
       final boolean[][] map = ParkingController.getMap(lsVehicles);
       final Point pos = ParkingController.convertInNbSquare(vMoving.getPosition());
       final int size = vMoving.getSize();
 
-      for (int i = 1; i <= distance; i++)
-         if (Constants.UP.equals(sense))
+      for (int i = 1; i <= move.dist; i++)
+         if (Constants.UP.equals(move.sense))
          {
-            if (map[pos.x][pos.y - i])
-               return false;
+            if (map[pos.x][pos.y - i]) return false;
          }
-         else if (Constants.DOWN.equals(sense))
+         else if (Constants.DOWN.equals(move.sense))
          {
-            if (map[pos.x][pos.y + i + size - 1])
-               return false;
+            if (map[pos.x][pos.y + i + size - 1]) return false;
          }
-         else if (Constants.RIGHT.equals(sense))
+         else if (Constants.RIGHT.equals(move.sense))
          {
-            if (map[pos.x + i + size - 1][pos.y])
-               return false;
+            if (map[pos.x + i + size - 1][pos.y]) return false;
          }
          else
          {
-            if (map[pos.x - i][pos.y])
-               return false;
+            if (map[pos.x - i][pos.y]) return false;
          }
       return true;
    }
@@ -108,7 +105,7 @@ public class ParkingController
       return new Point(p.x / Constants.SQUARE, p.y / Constants.SQUARE);
    }
 
-   private static boolean[][] getMap (java.util.Hashtable<String, Vehicule> lsVehicles)
+   private static boolean[][] getMap (Hashtable<String, Vehicule> lsVehicles)
    {
       final boolean[][] map = new boolean[Constants.NB_SQUARE][Constants.NB_SQUARE];
       final java.util.Set<String> keys = lsVehicles.keySet();

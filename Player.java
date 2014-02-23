@@ -58,7 +58,7 @@ public class Player
          final String movement = sc.nextLine().toUpperCase();
          if ("EXIT".equals(movement)) return -1; // quit
          try {
-            park.move(movement);
+            park.move(new Movement(movement));
             ++score;
          } catch (IllegalMovementException e) {
             System.out.println(e + " is not a valid movement.");

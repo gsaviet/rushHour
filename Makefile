@@ -21,6 +21,7 @@ CLASSES = \
 	Constants.java \
 	Canvas.java \
 	Rectangle.java \
+	Movement.java \
 	Vehicule.java \
 	ParkingController.java \
 	Grid.java \
