@@ -30,6 +30,12 @@ public class ParkingController
       return true;
    }
 
+   /**
+    * Check if movement's sense is consistent with the vehicle's direction.
+    * @param sense Movement's sense ("U", "D", "L" or "R").
+    * @param direction Vehicle's direction ("H" or "V").
+    * @return true if movement is consistent with the given direction.
+    */
    private static boolean checkSense (String sense, String direction)
    {
       if (Constants.HORIZONTAL.equals(direction))
@@ -44,35 +50,48 @@ public class ParkingController
             return false;
    }
 
+   /**
+    * Check if the movement doesn't move the vehicle out of the parking.
+    * @param move movement that we want to check.
+    * @param size vehicle's size in number of squares (2 or 3).
+    * @param pos vehicle's position in number of square.
+    * @return true if movement doesn't move out any vehicle.
+    * @throws VictoryException if vehicle named "X" move closer to the exit.
+    */
    private static boolean checkDistance (Movement move, int size, Point pos)
       throws VictoryException
    {
       if (Constants.RIGHT.equals(move.sense))
       {
-         if ((pos.x + move.dist + size) <= Constants.NB_SQUARE)
-            return true;
-         else if ("X".equals(move.name))
-            throw new VictoryException();
+         if ((pos.x + move.dist + size) <= Constants.NB_SQUARE) return true;
+         else if ("X".equals(move.name)) throw new VictoryException();
       }
       else if (Constants.LEFT.equals(move.sense))
       {
-         if ((pos.x - move.dist) >= 0)
-            return true;
+         if ((pos.x - move.dist) >= 0) return true;
       }
       else if (Constants.DOWN.equals(move.sense))
       {
-         if ((pos.y + move.dist + size) <= Constants.NB_SQUARE)
-            return true;
+         if ((pos.y + move.dist + size) <= Constants.NB_SQUARE) return true;
       }
       else
       {
-         if ((pos.y - move.dist) >= 0)
-            return true;
+         if ((pos.y - move.dist) >= 0) return true;
       }
 
       return false;
    }
 
+   /**
+    * Check if this movement doesn't move a vehicle over another one.
+    * @param lsVehicles list of vehicles inside the parking.
+    * @param move movement that we want to check.
+    * @param vMoving the vehicle that the user wants to move.
+    * @return true if movement is valid.
+    * @throws ArrayIndexOutOfBoundsException if a vehicle tries to
+    *    leave the parking. The only vehicle that can rise this exception
+    *    is X.
+    */
    private static boolean checkOverlap (Hashtable<String, Vehicule> lsVehicles,
          Movement move, Vehicule vMoving)
    {
@@ -100,11 +119,21 @@ public class ParkingController
       return true;
    }
 
+   /**
+    * @param p a point in pixel.
+    * @return a point converted in number of square.
+    */
    private static Point convertInNbSquare (Point p)
    {
       return new Point(p.x / Constants.SQUARE, p.y / Constants.SQUARE);
    }
 
+   /**
+    * @param lsVehicles list of vehicles inside the parking.
+    * @return a map of boolean which represents every vehicle's position
+    *    inside the parking. If map[1][2] is true then a vehicle occupies
+    *    the square (1, 2) and no other vehicle can go to this square.
+    */
    private static boolean[][] getMap (Hashtable<String, Vehicule> lsVehicles)
    {
       final boolean[][] map = new boolean[Constants.NB_SQUARE][Constants.NB_SQUARE];
@@ -123,6 +152,10 @@ public class ParkingController
       return map;
    }
 
+   /**
+    * @param map that will be printed to stdout.
+    *    Method use for debugging.
+    */
    private static void printMap (boolean[][] map)
    {
       for (int i = 0; i < map.length; i++)
