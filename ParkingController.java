@@ -1,8 +1,21 @@
 import java.awt.Point;
 import java.util.Hashtable;
 
+/**
+ * Class use to check the validity of a movement before
+ * moving the vehicles.
+ *
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
+ */
 public class ParkingController
 {
+   /**
+    * Check if the movement is valid.
+    * @param move movement that we want to check.
+    * @param lsVehicles list of vehicles inside the parking.
+    * @return true if movement is valid.
+    * @throws VictoryException if vehicle named "X" has reached the exit.
+    */
    public static boolean checkMovement (Movement move,
          Hashtable<String, Vehicule> lsVehicles) throws VictoryException
    {
@@ -43,7 +56,7 @@ public class ParkingController
             return true;
          else
             return false;
-      else
+      else // Vertical
          if (Constants.UP.equals(sense) || Constants.DOWN.equals(sense))
             return true;
          else
@@ -74,7 +87,7 @@ public class ParkingController
       {
          if ((pos.y + move.dist + size) <= Constants.NB_SQUARE) return true;
       }
-      else
+      else // Up
       {
          if ((pos.y - move.dist) >= 0) return true;
       }
