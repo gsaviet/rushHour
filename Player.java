@@ -71,7 +71,7 @@ public class Player
             System.out.println(e + " is not a valid movement.");
          } catch (VictoryException e) {
             System.out.println("Victory");
-            System.out.println("Your score is :" + ++score);
+            System.out.println("Your score is: " + ++score);
             return score;
          } catch (Exception e) {
             System.out.println("Syntax error: a movement has the following format XU1.");
@@ -92,7 +92,9 @@ public class Player
     */
    public void setScore (int idLvl, int idConfig, int score)
    {
-      if (this.getScore(idLvl, idConfig) == -1)
+      if (score == -1) // Don't save score equals to -1
+         return;
+      else if (this.getScore(idLvl, idConfig) == -1)
          this.scoreboard.add(new int[]{idLvl, idConfig, score});
       else
          for (int[] t : this.scoreboard)
