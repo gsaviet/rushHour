@@ -7,13 +7,13 @@ import java.util.ArrayList;
  */
 public class Player
 {
-   // This Player's name.
+   /** This Player's name. */
    private String name;
 
-   // For keeping the score.
+   /** For keeping the score. */
    private ArrayList<int[]> scoreboard;
 
-   // Path to the directory which contains the score's files.
+   /** Path to the directory which contains the score's files. */
    private static final String SCORE_PATH = "scoreboard/"; 
 
    /**

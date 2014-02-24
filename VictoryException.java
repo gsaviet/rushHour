@@ -1,5 +1,5 @@
 /**
- * Exception throw when a player win.
+ * Exception thrown when a player win.
  */
 public class VictoryException extends Exception
 {

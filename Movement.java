@@ -5,11 +5,11 @@
  */
 public class Movement
 {
-   // name of the vehicle that is moving.
+   /** name of the vehicle that is moving. */
    public final String name;
-   // Sense of movement. U for up, D for Down, L for Left and R for Right.
+   /** Sense of movement. U for up, D for Down, L for Left and R for Right. */
    public final String sense;
-   // Distance in number of square.
+   /** Distance in number of square. */
    public final int dist;
 
    /**

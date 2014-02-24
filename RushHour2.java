@@ -6,18 +6,18 @@
  */
 public class RushHour2
 {
-   // scanner use for reading user's input.
+   /** scanner use for reading user's input. */
    private static final java.util.Scanner sc = new java.util.Scanner(System.in);
-   // use to generate random number.
+   /** use to generate random number. */
    private static final java.util.Random rand =
       new java.util.Random(System.currentTimeMillis());
 
-   // player that is currently playing.
+   /** player that is currently playing. */
    private static Player p;
 
-   // level chosen by the player
+   /** level chosen by the player */
    private static int lvl;
-   // config chosen by the player
+   /** config chosen by the player */
    private static int conf;
 
    /**
@@ -38,7 +38,7 @@ public class RushHour2
    {
       System.out.println("exit");
       Canvas.getCanvas().close();
-      if (RushHour2.sc != null) sc.close();
+      if (RushHour2.sc != null) RushHour2.sc.close();
       System.exit(code);
    }
 
@@ -49,8 +49,8 @@ public class RushHour2
    {
       // Create player.
       System.out.println("What's your name?");
-      if (!sc.hasNextLine()) RushHour2.exit(0);
-      return new Player(sc.nextLine());
+      if (!RushHour2.sc.hasNextLine()) RushHour2.exit(0);
+      return new Player(RushHour2.sc.nextLine());
    }
 
    /**
@@ -67,8 +67,8 @@ public class RushHour2
       // Ask user.
       System.out.println("[Enter to let the computer choose]");
       System.out.print("Choose a level of difficulty: ");
-      if (!sc.hasNextLine()) RushHour2.exit(0);
-      final String input = sc.nextLine();
+      if (!RushHour2.sc.hasNextLine()) RushHour2.exit(0);
+      final String input = RushHour2.sc.nextLine();
 
       // Check input.
       if ("".equals(input)) // Let the computer choose.
@@ -115,8 +115,8 @@ public class RushHour2
       System.out.println("The first is 1 and the last is " + nbConf + ".");
       // Ask user.
       System.out.print("Choose a config: ");
-      if (!sc.hasNextLine()) RushHour2.exit(0);
-      final String input = sc.nextLine();
+      if (!RushHour2.sc.hasNextLine()) RushHour2.exit(0);
+      final String input = RushHour2.sc.nextLine();
 
       // Check input.
       if ("".equals(input)) // Let the computer choose.
@@ -158,7 +158,7 @@ public class RushHour2
 
       // Continue ?
       System.out.print("Continue [y or n]? ");
-      if (!sc.hasNextLine() || "N".equals(sc.nextLine().toUpperCase()))
+      if (!RushHour2.sc.hasNextLine() || "N".equals(RushHour2.sc.nextLine().toUpperCase()))
          RushHour2.exit(0); // End of game.
 
       System.out.println();

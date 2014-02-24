@@ -64,6 +64,7 @@ public class ParkingFactory
    {
       lsVehicles = new Hashtable<String, Vehicule>();
       readVehicDat();
+
       lsLvl = new ArrayList<Level>();
       readLvlCfg();
    }
@@ -75,15 +76,15 @@ public class ParkingFactory
     */
    private void readVehicDat ()
    {
-      LineFileReader file = new LineFileReader(PATH_VEHIC_DAT);
+      final LineFileReader file = new LineFileReader(PATH_VEHIC_DAT);
       file.open();
 
       String line = file.readLine();
       while (line != null)
       {
-         String name = line.substring(0, 1);
-         int size = Integer.parseInt(line.substring(1, 2));
-         String col = line.substring(2);
+         final String name = line.substring(0, 1);
+         final int size = Integer.parseInt(line.substring(1, 2));
+         final String col = line.substring(2);
          lsVehicles.put(name, new Vehicule(name, col, size, 0, 0, "0"));
          line = file.readLine();
       }
@@ -103,11 +104,11 @@ public class ParkingFactory
    }
 
    /**
-    * @return an array of string used to display every level available.
+    * @return an array of string use for displaying all the levels available.
     */
    public String[] getListLevels ()
    {
-      String[] listLevels = new String[lsLvl.size()];
+      final String[] listLevels = new String[lsLvl.size()];
       int i = 0;
 
       for (Level lvl : lsLvl)
@@ -139,13 +140,13 @@ public class ParkingFactory
     */
    public Parking createParking (int idLvl, int idConfig)
    {
-      Canvas.getCanvas().clearCanvas(false);
-      Parking park = new Parking();
+      Canvas.getCanvas().clearCanvas(true);
+      final Parking park = new Parking();
 
-      ArrayList<Position> lsPos = lsLvl.get(idLvl).getConfig(idConfig);
+      final ArrayList<Position> lsPos = lsLvl.get(idLvl).getConfig(idConfig);
       for (Position p : lsPos)
       {
-         Vehicule v = lsVehicles.get(p.name);
+         final Vehicule v = lsVehicles.get(p.name);
          park.addVehicule(p.name, v.getColor(), v.getSize(),
                p.x, p.y, p.direction);
       }

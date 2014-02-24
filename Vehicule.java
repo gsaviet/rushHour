@@ -46,6 +46,7 @@ public class Vehicule extends Rectangle implements Constants {
       }
    }
 
+   ////////////////// MODIF //////////////////////////////////////
    /**
     * @return this vehicule's size (2 or 3).
     */

@@ -3,6 +3,8 @@ import java.io.FileWriter;
 
 /**
  * Class use for writing files. Use by Player for saving scores.
+ *
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
 public class LineFileWriter
 {

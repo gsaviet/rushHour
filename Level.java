@@ -36,7 +36,7 @@ public class Level
 
       // Get list of config from the file.
       lsConfig = new ArrayList<ArrayList<Position>>();
-      LineFileReader file = new LineFileReader(pathLvlCfg);
+      final LineFileReader file = new LineFileReader(pathLvlCfg);
       file.open();
 
       String line = file.readLine();
@@ -57,8 +57,8 @@ public class Level
     */
    private ArrayList<Position> createConfiguration (String lineLvlCfg)
    {
-      ArrayList<Position> config = new ArrayList<Position>();
-      String[] posCfg = lineLvlCfg.split(" ");
+      final ArrayList<Position> config = new ArrayList<Position>();
+      final String[] posCfg = lineLvlCfg.split(" ");
       for (String s : posCfg)
          config.add(new Position(s));
       return config;

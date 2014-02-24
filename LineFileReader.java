@@ -4,6 +4,8 @@ import java.io.FileReader;
 /**
  * Class use for reading files.
  * Config files and scores files.
+ *
+ * @author BRESSAN Romain, DUCOURNEAU Jonathan, LEBLOND Xavier, YAHYAOUI Hichem.
  */
 public class LineFileReader
 {
@@ -61,5 +63,3 @@ public class LineFileReader
       return false;
    }
 }
-
-
