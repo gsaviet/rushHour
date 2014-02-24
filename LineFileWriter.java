@@ -16,6 +16,14 @@ public class LineFileWriter
    public LineFileWriter (String filename)
    {
       this.filename = filename;
+      final java.io.File file = new java.io.File(filename);
+      // Create file if it doesn't exist.
+      try {
+         if (!file.isFile() && !file.createNewFile())
+            throw new java.io.IOException();
+      } catch (java.io.IOException e) {
+         System.err.println("Error creating new file: " + file.getAbsolutePath());
+      }
    }
 
    /**

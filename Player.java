@@ -144,8 +144,10 @@ public class Player
    /**
     * Load this Player's best score from a file.
     */
-   public void load () 
+   public void load ()
    {
+      // Stop if file doesn't exist.
+      if (! (new java.io.File(SCORE_PATH + this.name).isFile())) return;
       final LineFileReader file = new LineFileReader(SCORE_PATH + this.name);
       if (file.open())
       {
