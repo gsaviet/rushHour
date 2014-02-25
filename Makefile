@@ -5,6 +5,9 @@
 # Created on 20 Feb 2014
 ###############################################################################
 
+PRGNAME = rushHour-2-Groupe4
+MAIN = RushHour2
+
 JC = javac
 JFLAGS = -encoding utf-8 -implicit:none
 JFLAGSDEBUG = -g -Werror -Xlint:all -Xlint:-serial
@@ -33,14 +36,11 @@ CLASSES = \
 	Player.java  \
 	RushHour2.java
 
-GAMENAME = rushHour-2-Groupe4
-MAIN = RushHour2
+TARNAME = ${PRGNAME}
+JARNAME = ${PRGNAME}.jar
 
-TARNAME = ${GAMENAME}
-JARNAME = ${GAMENAME}.jar
-
-# JavaDoc
-JDOCDIR = doc/
+# Javadoc
+JDOCDIR = doc
 JDOCOPT = -private -encoding utf-8 -docencoding utf-8 -charset utf-8
 JDOCLINKS = -link http://docs.oracle.com/javase/7/docs/api/
 
@@ -50,30 +50,34 @@ default: classes
 
 classes: $(CLASSES:.java=.class)
 
+# Clean
 clean :
 	-rm -f *.class
 
 mrproper : clean default
 
-tar : clean
-	-rm -Rf ${TARNAME} ${TARNAME}.tar.gz
-	-mkdir ${TARNAME}
-	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
-	-tar -cvzf ${TARNAME}.tar.gz ${TARNAME}
-	-rm -Rf ${TARNAME}
-
-zip : clean
-	-rm -Rf ${TARNAME} ${TARNAME}.zip
-	-mkdir ${TARNAME}
-	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
-	-zip -vr ${TARNAME}.zip ${TARNAME}
-	-rm -Rf ${TARNAME}
-
+# Compile and execute
 test : classes
 	-java ${MAIN}
 
+# Archive
+tar : clean
+	-rm -rf ${TARNAME} ${TARNAME}.tar.gz
+	-mkdir ${TARNAME}
+	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
+	-tar -cvzf ${TARNAME}.tar.gz ${TARNAME}
+	-rm -rf ${TARNAME}
+
+zip : clean
+	-rm -rf ${TARNAME} ${TARNAME}.zip
+	-mkdir ${TARNAME}
+	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
+	-zip -vr ${TARNAME}.zip ${TARNAME}
+	-rm -rf ${TARNAME}
+
+# Jar
 jar : clean
-	-rm -Rf bin
+	-rm -rf bin
 	-mkdir bin
 	-cp -r -t bin/ conf
 	-javac ${JFLAGS} -g:none -d bin ${CLASSES}
@@ -84,14 +88,15 @@ jar : clean
 wc :
 	-wc ${CLASSES} Makefile
 
+# Javadoc
 docclean :
-	-rm -Rf ${JDOCDIR}
+	-rm -rf ${JDOCDIR}
 
 doc : docclean
 	-mkdir ${JDOCDIR}
 	-javadoc ${JDOCOPT} ${JDOCLINKS} -d ${JDOCDIR} ${CLASSES}
 
 man :
-	-${BROWSER} ${JDOCDIR}index.html &
+	-${BROWSER} ${JDOCDIR}/index.html
 
 .PHONY: default clean mrproper tar test jar wc doc docclean man zip
