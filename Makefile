@@ -33,7 +33,7 @@ CLASSES = \
 	Player.java  \
 	RushHour2.java
 
-GAMENAME = rushHour
+GAMENAME = rushHour-2-Groupe4
 MAIN = RushHour2
 
 TARNAME = ${GAMENAME}
@@ -62,6 +62,13 @@ tar : clean
 	-tar -cvzf ${TARNAME}.tar.gz ${TARNAME}
 	-rm -Rf ${TARNAME}
 
+zip : clean
+	-rm -Rf ${TARNAME} ${TARNAME}.zip
+	-mkdir ${TARNAME}
+	-cp -r -t ${TARNAME} ${CLASSES} Makefile README.md ./conf
+	-zip -vr ${TARNAME}.zip ${TARNAME}
+	-rm -Rf ${TARNAME}
+
 test : classes
 	-java ${MAIN}
 
@@ -87,4 +94,4 @@ doc : docclean
 man :
 	-${BROWSER} ${JDOCDIR}index.html &
 
-.PHONY: default clean mrproper tar test jar wc doc docclean man
+.PHONY: default clean mrproper tar test jar wc doc docclean man zip
