@@ -27,9 +27,10 @@ public class LineFileReader
    public boolean open ()
    {
       try {
-         reader = new BufferedReader(new FileReader(filename));
+         reader = new BufferedReader(new java.io.InputStreamReader(
+                  LineFileReader.class.getResourceAsStream(this.filename)));
          return true;
-      } catch (java.io.IOException e) {
+      } catch (NullPointerException e) {
          System.err.println("Error while opening file \"" + filename + "\"");
       }
       return false;
