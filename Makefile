@@ -6,12 +6,13 @@
 ###############################################################################
 
 JC = javac
-JFLAGS = -g
+JFLAGS = -encoding utf-8 -implicit:none
+JFLAGSDEBUG = -g -Werror -Xlint:all -Xlint:-serial
 
 .SUFFIXES: .java .class
 
 .java.class:
-	$(JC) $(JFLAGS) $*.java
+	$(JC) $(JFLAGS) $(JFLAGSDEBUG) $*.java
 
 CLASSES = \
 	VictoryException.java \
@@ -32,12 +33,18 @@ CLASSES = \
 	Player.java  \
 	RushHour2.java
 
-
 GAMENAME = rushHour
+MAIN = RushHour2
+
 TARNAME = ${GAMENAME}
 JARNAME = ${GAMENAME}.jar
-BROWSER = firefox
+
+# JavaDoc
 JDOCDIR = doc/
+JDOCOPT = -private -encoding utf-8 -docencoding utf-8 -charset utf-8
+JDOCLINKS = -link http://docs.oracle.com/javase/7/docs/api/
+
+BROWSER = firefox
 
 default: classes
 
@@ -51,25 +58,33 @@ mrproper : clean default
 tar : clean
 	-rm -Rf ${TARNAME} ${TARNAME}.tar.gz
 	-mkdir ${TARNAME}
-	-cp -r -t ${TARNAME} ./*.java Makefile ./img ./tmp
+	-cp -r -t ${TARNAME} ./*.java Makefile README.md ./conf
 	-tar -cvzf ${TARNAME}.tar.gz ${TARNAME}
 	-rm -Rf ${TARNAME}
 
 test : classes
-	-java RushHour2
+	-java ${MAIN}
 
-jar : mrproper
-	-jar -cfe ${JARNAME} RushHour2 .
+jar : clean
+	-rm -Rf bin
+	-mkdir bin
+	-cp -r -t bin/ conf
+	-javac ${JFLAGS} -g:none -d bin ${CLASSES}
+	-(cd bin && jar cvfe ${JARNAME} ${MAIN} .)
+	-mv bin/${JARNAME} .
+	-rm -rf bin
 
 wc : 
-	-wc *.java Makefile
+	-wc ${CLASSES} Makefile
 
-doc :
+docclean :
 	-rm -Rf ${JDOCDIR}
+
+doc : docclean
 	-mkdir ${JDOCDIR}
-	-javadoc -d ${JDOCDIR} ${CLASSES}
+	-javadoc ${JDOCOPT} ${JDOCLINKS} -d ${JDOCDIR} ${CLASSES}
 
 man :
-	-${BROWSER} ${JDOCDIR}/index.html &
+	-${BROWSER} ${JDOCDIR}index.html &
 
-.PHONY: default clean mrproper tar test jar wc doc man
+.PHONY: default clean mrproper tar test jar wc doc docclean man

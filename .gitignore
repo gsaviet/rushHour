@@ -5,4 +5,7 @@
 *.war
 *.ear
 
+*.tar.gz
+
 scoreboard/*
+doc/*
