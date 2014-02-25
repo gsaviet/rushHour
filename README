@@ -1,0 +1,59 @@
+|================================================|
+|      Mini-projet: Rush Hour - 2ème partie      |
+|================================================|
+|                                                |
+|  Groupe : 4                                    |
+|                                                |
+|  Auteur : Romain BRESSAN                       |
+|  Auteur : Jonathan DUCOURNEAU                  |
+|  Auteur : Xavier LEBLOND                       |
+|  Auteur : Hichem YAHYAOUI                      |
+|================================================|
+
+=== Lancer le jeu ===
+Le main est dans la classe RushHour2. Donc pour le
+compiler puis l'executer :
+
+   javac *.java && java RushHour2
+
+Ou si le système a make :
+
+   make test
+
+
+=== Modification 1ère partie ===
+* Tous les fichiers ont été convertie en utf-8.
+* Canvas.java :
+   ** modif javadoc pour enlever les warnings
+      (@author et @param newColor)
+   ** Ajout methode clearCanvas() pour enlever
+      tous les objets du Canvas avant de créer un
+      nouveau Parking.
+* Constants.java :
+   ** Ajout de commentaire.
+   ** Ajout d'une nouvelle constante NB_SQUARE
+      qui vaut 6 par defaut. Représente le nombre
+      de carré (case où les vehicules peuvent
+      aller) dans une ligne ou dans une colonne.
+* Grid.java : aucune modfification.
+* Vehicule.java :
+   ** Ajout des getters getSize() et getDirection()
+   ** Suppr fonction inutile visualiserVehicule()
+   ** Renommer deplacerVehicule() en move()
+      Et utilise la classe Movement maintenant.
+* Rectangle.java :
+   ** Ajout des getter getPosition()
+      et getColor().
+   ** Suppression de l'import inutile.
+* Parking.java :
+   ** Modif addVehicule() pour qu'il n'appelle plus
+      la méthode inutile visualiserVehicule().
+   ** Modif move() pour prendre un Movement en
+      paramètre à la place d'une String.
+      Déplacer l'analyse de la String dans la
+      classe Movement. Et verifie si le mouvement
+      est valide avant de l'éxecuter.
+      Leve des exceptions en cas de mauvais
+      mouvement ou de victoire.
+
+=== Fin ===

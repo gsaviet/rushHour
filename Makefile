@@ -58,14 +58,14 @@ mrproper : clean default
 tar : clean
 	-rm -Rf ${TARNAME} ${TARNAME}.tar.gz
 	-mkdir ${TARNAME}
-	-cp -r -t ${TARNAME} ./*.java Makefile README.md ./conf
+	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
 	-tar -cvzf ${TARNAME}.tar.gz ${TARNAME}
 	-rm -Rf ${TARNAME}
 
 zip : clean
 	-rm -Rf ${TARNAME} ${TARNAME}.zip
 	-mkdir ${TARNAME}
-	-cp -r -t ${TARNAME} ${CLASSES} Makefile README.md ./conf
+	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
 	-zip -vr ${TARNAME}.zip ${TARNAME}
 	-rm -Rf ${TARNAME}
 
