@@ -56,4 +56,11 @@ Ou si le système a make :
       Leve des exceptions en cas de mauvais
       mouvement ou de victoire.
 
+Les getters ajoutés sont utilisés surtout pour
+pouvoir ajouté facilement des vehicules au parking
+en utilisant la méthode existante qui construit
+le véhicule. Certains sont utilisés par
+ParkingController pour récupérer les infos dont
+on a besoin sur les véhicules.
+
 === Fin ===

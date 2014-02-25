@@ -1,3 +1,4 @@
+import java.util.regex.Pattern;
 /**
  * The main class which creates a Player, ask the user
  * the level he wants to play, then plays it.
@@ -50,7 +51,15 @@ public class RushHour2
       // Create player.
       System.out.println("What's your name?");
       if (!RushHour2.sc.hasNextLine()) RushHour2.exit(0);
-      return new Player(RushHour2.sc.nextLine());
+      final String name = RushHour2.sc.nextLine().trim();
+      final Pattern pattern = Pattern.compile("^[A-Za-z0-9, ]++$");
+      if (!pattern.matcher(name).matches())
+      {
+         System.err.println(name + " is not a valid name.");
+         System.out.println("It can only contains letters, numbers, spaces and ','.");
+         return createPlayer();
+      }
+      return new Player(name);
    }
 
    /**
