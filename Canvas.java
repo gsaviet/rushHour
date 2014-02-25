@@ -17,9 +17,9 @@ import javax.swing.JPanel;
  * This is a modification of the general purpose Canvas, specially made for
  * the BlueJ "shapes" example. 
  *
- * @author: Bruce Quig
- * @author: Michael Kölling (mik)
- * @author: Pascale Launay
+ * @author Bruce Quig
+ * @author Michael Kölling (mik)
+ * @author Pascale Launay
  *
  * @version 2014.02.06
  */
@@ -150,7 +150,7 @@ public class Canvas
 
    /**
     * Set the foreground color of the Canvas. 
-    * @param  newColor   the new color for the foreground of the Canvas 
+    * @param colorString the new color for the foreground of the Canvas
     */
    public void setForegroundColor(String colorString)
    {
