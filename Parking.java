@@ -16,7 +16,7 @@ public class Parking
    /**
     * Permet de construire un Parking avec une grille vide de véhicule
     */
-   public Parking() 
+   public Parking()
    {
       new Grid();
       tableVehicule = new Hashtable<String, Vehicule>();
@@ -44,7 +44,7 @@ public class Parking
     * @param nom Nom du véhicule recherché
     * @return Le véhicule correspondant au nom
     */
-   public Vehicule getVehicule(String nom) 
+   public Vehicule getVehicule(String nom)
    {
       return tableVehicule.get(nom);
    }

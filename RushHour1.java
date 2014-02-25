@@ -1,5 +1,5 @@
 /**
- * Cette classe permet de tester la première version des classes Grid, Vehicule et Parking 
+ * Cette classe permet de tester la première version des classes Grid, Vehicule et Parking
  * @author Denis Mahieux, Kévin Meyer, Levy Nguema, Hamza Oukabli
  * @version 1.0 - 10/02/2014
  */

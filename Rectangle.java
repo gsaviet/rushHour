@@ -4,7 +4,7 @@
  * red, black, blue, dark_blue, light_yellow, yellow, orange, pink,
  * light_green, green, dark_green, purple, dark_purple, magenta,
  * white, brown, dark_brown, grey, dark_grey
- * 
+ *
  * @author  Pascale Launay and Michael Kölling and David J. Barnes
  * @version 2014.01.31
  */
@@ -84,12 +84,12 @@ public class Rectangle
    {
       int delta;
 
-      if(distance < 0) 
+      if(distance < 0)
       {
          delta = -1;
          distance = -distance;
       }
-      else 
+      else
       {
          delta = 1;
       }
@@ -108,12 +108,12 @@ public class Rectangle
    {
       int delta;
 
-      if(distance < 0) 
+      if(distance < 0)
       {
          delta = -1;
          distance = -distance;
       }
-      else 
+      else
       {
          delta = 1;
       }
@@ -126,7 +126,7 @@ public class Rectangle
    }
 
    /**
-    * Change the size to the new size (in pixels). 
+    * Change the size to the new size (in pixels).
     * Width and height must be >= 0.
     */
    public void changeSize(int width, int height)
@@ -138,7 +138,7 @@ public class Rectangle
    }
 
    /**
-    * Change the position to the new position (in pixels). 
+    * Change the position to the new position (in pixels).
     */
    public void changePosition(int xPosition, int yPosition)
    {

@@ -32,7 +32,7 @@ public class Vehicule extends Rectangle implements Constants {
     * @param posY Position y de la première case du véhicule sur la grille
     * @param direction Direction du véhicule (horizontale ou verticale)
     */
-   public Vehicule(String nom, String couleur, int longueur, int posX, int posY, String direction) 
+   public Vehicule(String nom, String couleur, int longueur, int posX, int posY, String direction)
    {
       // Fix bug : bad vehicule position.
       super(nom,longueur*SQUARE,SQUARE,BORDER+SQUARE*(posX),BORDER+SQUARE*(posY),couleur);
@@ -40,7 +40,7 @@ public class Vehicule extends Rectangle implements Constants {
       this.direction=direction;
       this.longueur=longueur;
 
-      if(direction.equals(VERTICAL)) 
+      if(direction.equals(VERTICAL))
       {
          changeSize(SQUARE,longueur*SQUARE);
       }

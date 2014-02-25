@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 /**
  * Canvas is a class to allow for simple graphical drawing on a canvas.
  * This is a modification of the general purpose Canvas, specially made for
- * the BlueJ "shapes" example. 
+ * the BlueJ "shapes" example.
  *
  * @author Bruce Quig
  * @author Michael Kölling (mik)
@@ -38,10 +38,8 @@ public class Canvas
    public static Canvas getCanvas()
    {
       if(canvasSingleton == null) {
-         canvasSingleton = new Canvas(Constants.TITLE, 
-               Constants.SIZE, 
-               Constants.SIZE, 
-               Color.white);
+         canvasSingleton = new Canvas(Constants.TITLE, Constants.SIZE,
+               Constants.SIZE, Color.white);
       }
       canvasSingleton.setVisible(true);
       return canvasSingleton;
@@ -88,7 +86,7 @@ public class Canvas
     * when made visible. This method can also be used to bring an already
     * visible canvas to the front of other windows.
     * @param visible  boolean value representing the desired visibility of
-    * the canvas (true or false) 
+    * the canvas (true or false)
     */
    public void setVisible(boolean visible)
    {
@@ -139,7 +137,7 @@ public class Canvas
 
    /**
     * Erase a given shape's from the screen.
-    * @param  referenceObject  the shape object to be erased 
+    * @param  referenceObject  the shape object to be erased
     */
    public void erase(Object referenceObject)
    {
@@ -149,7 +147,7 @@ public class Canvas
    }
 
    /**
-    * Set the foreground color of the Canvas. 
+    * Set the foreground color of the Canvas.
     * @param colorString the new color for the foreground of the Canvas
     */
    public void setForegroundColor(String colorString)
@@ -220,14 +218,14 @@ public class Canvas
     * Wait for a specified number of milliseconds before finishing.
     * This provides an easy way to specify a small delay which can be
     * used when producing animations.
-    * @param  milliseconds  the number 
+    * @param  milliseconds  the number
     */
    public void wait(int milliseconds)
    {
       try
       {
          Thread.sleep(milliseconds);
-      } 
+      }
       catch (Exception e)
       {
          // ignoring exception at the moment

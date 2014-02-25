@@ -81,7 +81,7 @@ jar : clean
 	-mv bin/${JARNAME} .
 	-rm -rf bin
 
-wc : 
+wc :
 	-wc ${CLASSES} Makefile
 
 docclean :

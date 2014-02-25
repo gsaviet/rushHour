@@ -14,7 +14,7 @@ public class Player
    private ArrayList<int[]> scoreboard;
 
    /** Path to the directory which contains the score's files. */
-   private static final String SCORE_PATH = "scoreboard/"; 
+   private static final String SCORE_PATH = "scoreboard/";
 
    /**
     * Construct the Player. Only the player's name is needed.
