@@ -72,7 +72,7 @@ zip : clean
 	-rm -rf ${TARNAME} ${TARNAME}.zip
 	-mkdir ${TARNAME}
 	-cp -r -t ${TARNAME} ${CLASSES} Makefile README ./conf
-	-zip -vr ${TARNAME}.zip ${TARNAME}
+	-zip -9 -vr ${TARNAME}.zip ${TARNAME}
 	-rm -rf ${TARNAME}
 
 # Jar
